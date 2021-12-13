@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/style.css" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    style="background-color: #0f172a"
+    class="flex justify-center items-center h-screen"
+  >
+    <div
+      class="flex flex-col w-1/2 p-8 rounded-md"
+      style="background-color: #1e293b"
+    >
+      <h1 class="text-xl font-bold text-white mb-5 text-center">
+        Prediksi Jumlah Investasi
+      </h1>
+      <form method="post" class="flex flex-col" action="/prediction">
+        <div class="flex flex-col">
+          <label for="kabupaten" class="text-white mt-3">Kabupaten/Kota</label>
+          <select
+            id="kabupaten"
+            name="kabupaten"
+            class="rounded-md h-10 mt-2 p-3"
+          ></select>
+        </div>
+        <div class="flex flex-col">
+          <label for="proyek" class="text-white mt-3">Jumlah Proyek</label>
+          <input
+            type="number"
+            id="proyek"
+            name="proyek"
+            class="rounded-md h-10 mt-2 p-3"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="tki" class="text-white mt-3">Jumlah TKI</label>
+          <input
+            type="number"
+            id="proyek"
+            name="tki"
+            class="rounded-md h-10 mt-2 p-3"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="tka" class="text-white mt-3">Jumlah TKA</label>
+          <input
+            type="number"
+            id="proyek"
+            name="tka"
+            class="rounded-md h-10 mt-2 p-3"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="font-bold text-white bg-indigo-600 p-3 rounded-md mt-5"
+        >
+          Prediksi
+        </button>
+      </form>
+      {% if prediction %}
+      <p class="text-white">Prediksi : {{prediction}}</p>
+      {% endif %}
+    </div>
+
+    <script>
+      const regencies = [
+        "Kabupaten Pati",
+        "Kota Semarang",
+        "Kabupaten Sukoharjo",
+        "Kabupaten Semarang",
+        "Kabupaten Cilacap",
+        "Kabupaten Karanganyar",
+        "Kabupaten Boyolali",
+        "Kabupaten Demak",
+        "Kabupaten Jepara",
+        "Kabupaten Klaten",
+        "Kabupaten Purbalingga",
+        "Kabupaten Kendal",
+        "Kabupaten Magelang",
+        "Kabupaten Sragen",
+        "Kota Surakarta",
+        "Kabupaten Wonosobo",
+        "Kabupaten Banyumas",
+        "Kabupaten Tegal",
+        "Kabupaten Purworejo",
+        "Kabupaten Batang",
+        "Kabupaten Rembang",
+        "Kabupaten Wonogiri",
+        "Kabupaten Blora",
+        "Kabupaten Banjarnegara",
+        "Kabupaten Pekalongan",
+        "Kabupaten Grobogan",
+        "Kota Magelang",
+        "Kabupaten Brebes",
+        "Kota Pekalongan",
+        "Kabupaten Pemalang",
+        "Kabupaten Temanggung",
+        "Kota Salatiga",
+        "Kota Tegal",
+      ];
+
+      document.addEventListener("DOMContentLoaded", function () {
+        for (const regency of regencies) {
+          const node = document.createElement("option");
+          const attribute = document.createAttribute("value");
+          attribute.value = regency;
+          node.setAttributeNode(attribute);
+
+          const text = document.createTextNode(regency);
+          node.appendChild(text);
+
+          document.getElementById("kabupaten").appendChild(node);
+        }
+      });
+    </script>
+  </body>
+</html>
